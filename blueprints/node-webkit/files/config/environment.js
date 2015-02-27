@@ -2,9 +2,9 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: '<%= pkg.name %>',
+    modulePrefix: '<%= dasherizedPackageName %>',
     environment: environment,
-    baseURL: '',
+    baseURL: '/',
     locationType: 'hash',
     EmberENV: {
       FEATURES: {

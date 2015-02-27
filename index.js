@@ -1,24 +1,18 @@
-/* jshint node: true */
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-
-function inlineScript(filename) {
-  var src = path.join(__dirname, 'resources', filename);
-  return '<script>' + fs.readFileSync(src) + '</script>';
-}
-
 module.exports = {
-  name: 'ember-cli-node-webkit',
+  name: 'ember-node-webkit',
 
-  contentFor: function(type, config) {
-    if (type === 'body') {
-      return inlineScript('shim-body.js');
-    }
+  included: function(app) {
+    this._super.included(app);
 
-    if (type === 'body-footer') {
-      return inlineScript('shim-body-footer.js');
+    app.import('vendor/node-webkit/shim.js', { prepend: true });
+    app.import({ development: 'vendor/node-webkit/reload.js' });
+  },
+
+  includedCommands: function() {
+    return {
+      nw: require('./lib/commands/nw')
     }
   }
 };

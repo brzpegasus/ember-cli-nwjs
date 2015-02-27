@@ -1,41 +1,26 @@
 {
   "name": "ember-cli-node-webkit",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
+  "version": "0.1.0",
+  "description": "An addon for developing node-webkit Ember apps",
   "scripts": {
-    "start": "ember server",
-    "build": "ember build",
-    "test": "ember test"
+    "test": "node tests/runner.js"
   },
-  "repository": "",
+  "repository": "https://github.com/brzpegasus/ember-cli-node-webkit",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Estelle DeBlois",
   "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "rsvp": "^3.0.17"
+  },
   "devDependencies": {
-    "broccoli-asset-rev": "^2.0.0",
-    "broccoli-ember-hbs-template-compiler": "^1.6.1",
-    "ember-cli": "0.1.5",
-    "ember-cli-content-security-policy": "0.3.0",
-    "ember-cli-dependency-checker": "0.0.7",
-    "ember-cli-esnext": "0.1.1",
-    "ember-cli-ic-ajax": "0.1.1",
-    "ember-cli-inject-live-reload": "^1.3.0",
-    "ember-cli-qunit": "0.1.2",
-    "ember-data": "1.0.0-beta.12",
-    "ember-export-application-global": "^1.0.0",
-    "express": "^4.8.5",
-    "glob": "^4.0.5"
+    "ember-cli": "0.2.0-beta.1"
   },
   "keywords": [
-    "ember-addon"
-  ],
-  "ember-addon": {
-    "configPath": "tests/dummy/config"
-  }
+    "ember-addon",
+    "node-webkit",
+    "nw"
+  ]
 }
