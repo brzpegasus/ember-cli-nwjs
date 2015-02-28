@@ -22,5 +22,8 @@
     "ember-addon",
     "node-webkit",
     "nw"
-  ]
+  ],
+  "ember-addon": {
+    "defaultBlueprint": "node-webkit"
+  }
 }
