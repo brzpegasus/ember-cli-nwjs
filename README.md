@@ -7,14 +7,15 @@ It also provides a convenient command (`ember nw`) to both build the app and lau
 
 ## Usage
 
-* `ember addon:install ember-cli-node-webkit`
+```
+ember install:addon ember-cli-node-webkit
+```
 
-or
-
-* `npm install --save-dev ember-cli-node-webkit`
-* `ember g node-webkit`
+This will install the addon to your Ember CLI project as a dev dependency, and apply the necessary configuration from the `node-webkit` blueprint.
 
 ## Command
+
+The addon makes the following command available for you to use in your Ember CLI project:
 
 * `ember nw`
 
@@ -36,3 +37,32 @@ This addon will try to determine the path to the NW.js executable based on the c
 * Other: `nw` (assuming it is in your PATH)
 
 You can always change this value by specifying an environment property called `NW_PATH` that points to the binary file. The addon will read in the value via `process.env.NW_PATH` and use it, if present.
+
+## Working with master
+
+To install the addon from `master`, run the following:
+
+```
+git clone git@github.com:brzpegasus/ember-cli-node-webkit.git 
+cd ember-cli-node-webkit
+npm link
+```
+
+Then, navigate to your Ember CLI project and add the addon as a dev dependency in your `package.json`. The version doesn't really matter, so long as it satisfies the `npm link`'ed package version. The package just needs to be listed so Ember CLI can discover the addon:
+
+```json
+{
+  "devDependencies": {
+    "ember-cli-node-webkit": "*"
+  }
+}
+```
+
+Finally, run the following to finish installing:
+
+```
+npm link ember-cli-node-webkit
+npm install
+bower install
+ember g node-webkit
+```
