@@ -1,8 +1,8 @@
 (function() {
-  if (!window.nwdispatcher) return;
+  if (!window.nwDispatcher) return;
 
   // Reload the page when anything in `dist` changes
-  var fs = window.requirenode('fs');
+  var fs = window.requireNode('fs');
 
   fs.watch('./dist', function() {
     window.location.reload();
