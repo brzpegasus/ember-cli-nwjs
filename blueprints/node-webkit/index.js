@@ -17,15 +17,18 @@ module.exports = {
   },
 
   afterInstall: function(options) {
-    var ui = this.ui;
+    var _this = this;
+    var dependencies = this.project.dependencies();
 
-    return this.updatePackageJson(options).catch(function(error) {
-      ui.writeLine(chalk.red('Error updating package.json.'));
-      ui.writeError(error);
-    });
+    return this.addNwConfig(options)
+      .then(function() {
+        if (!dependencies.nw) {
+          return _this.addPackageToProject('nw');
+        }
+      });
   },
 
-  updatePackageJson: function(options) {
+  addNwConfig: function(options) {
     var ui = this.ui;
     var project = this.project;
 
