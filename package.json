@@ -16,7 +16,14 @@
     "rsvp": "^3.0.17"
   },
   "devDependencies": {
-    "ember-cli": "0.2.0-beta.1"
+    "chai": "^2.1.1",
+    "chai-as-promised": "^4.3.0",
+    "ember-cli": "0.2.0-beta.1",
+    "glob": "^5.0.3",
+    "mocha": "^2.2.1",
+    "mocha-jshint": "^1.0.0",
+    "mock-spawn": "^0.2.4",
+    "mockery": "^1.4.0"
   },
   "keywords": [
     "ember-addon",
