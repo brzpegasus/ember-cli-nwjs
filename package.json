@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.0.0",
+    "node-webkit-builder": "^1.0.11",
     "rsvp": "^3.0.17"
   },
   "devDependencies": {
