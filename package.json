@@ -24,7 +24,8 @@
     "mocha": "^2.2.1",
     "mocha-jshint": "^1.0.0",
     "mock-spawn": "^0.2.4",
-    "mockery": "^1.4.0"
+    "mockery": "^1.4.0",
+    "sinon": "^1.14.1"
   },
   "keywords": [
     "ember-addon",

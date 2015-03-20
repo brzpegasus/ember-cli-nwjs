@@ -3,36 +3,43 @@
 var path          = require('path');
 var mockery       = require('mockery');
 var mockSpawn     = require('mock-spawn');
+var RSVP          = require('rsvp');
 var Command       = require('ember-cli/lib/models/command');
 var Task          = require('ember-cli/lib/models/task');
 var MockUI        = require('ember-cli/tests/helpers/mock-ui');
 var MockAnalytics = require('ember-cli/tests/helpers/mock-analytics');
-var RSVP          = require('rsvp');
+var MockProject   = require('../../helpers/mocks/project');
 var expect        = require('../../helpers/expect');
 
 describe("ember nw command", function() {
-  var NWCommand, ui, analytics, project, spawn, _envNW;
+  var CommandUnderTest, commandOptions, spawn, _envNW;
+
+  before(function() {
+    mockery.enable({
+      useCleanCache: true,
+      warnOnUnregistered: false
+    });
+  });
+
+  after(function() {
+    mockery.disable();
+  });
 
   beforeEach(function() {
-    spawn = mockSpawn();
-    mockery.enable({ useCleanCache: true });
-    mockery.registerMock('child_process', { spawn: spawn });
-    mockery.warnOnUnregistered(false);
-
     _envNW = process.env.NW_PATH;
     delete process.env.NW_PATH;
 
-    var nwObject = require('../../../lib/commands/nw');
-    NWCommand = Command.extend(nwObject);
+    spawn = mockSpawn();
+    mockery.registerMock('child_process', { spawn: spawn });
 
-    ui = new MockUI();
-    analytics = new MockAnalytics();
+    var cmd = require('../../../lib/commands/nw');
+    CommandUnderTest = Command.extend(cmd);
 
-    project = {
-      isEmberCLIProject: function() {
-        return true;
-      },
-      root: path.join(__dirname, '..', '..', 'fixtures', 'project-empty')
+    commandOptions = {
+      ui: new MockUI(),
+      analytics: new MockAnalytics(),
+      settings: {},
+      project: new MockProject('project-empty')
     };
   });
 
@@ -41,26 +48,22 @@ describe("ember nw command", function() {
 
     mockery.deregisterAll();
     mockery.resetCache();
-    mockery.disable();
   });
 
   it("should build the project before running nw.js", function() {
     var tasks = [];
 
-    var command = new NWCommand({
-      ui: ui,
-      analytics: analytics,
-      project: project,
-      settings: {},
-      buildWatch: function() {
-        tasks.push('buildWatch');
-        return RSVP.resolve();
-      },
-      runNW: function() {
-        tasks.push('runNW');
-        return RSVP.resolve();
-      }
-    }).validateAndRun();
+    commandOptions.buildWatch = function() {
+      tasks.push('buildWatch');
+      return RSVP.resolve();
+    };
+
+    commandOptions.runNW = function() {
+      tasks.push('runNW');
+      return RSVP.resolve();
+    };
+
+    var command = new CommandUnderTest(commandOptions).validateAndRun();
 
     return expect(command).to.be.fulfilled
       .then(function() {
@@ -71,20 +74,17 @@ describe("ember nw command", function() {
   it("should not run nw.js when the build fails", function() {
     var tasks = [];
 
-    var command = new NWCommand({
-      ui: ui,
-      analytics: analytics,
-      project: project,
-      settings: {},
-      buildWatch: function() {
-        tasks.push('buildWatch');
-        return RSVP.reject();
-      },
-      runNW: function() {
-        tasks.push('runNW');
-        return RSVP.resolve();
-      }
-    }).validateAndRun();
+    commandOptions.buildWatch = function() {
+      tasks.push('buildWatch');
+      return RSVP.reject();
+    };
+
+    commandOptions.runNW = function() {
+      tasks.push('runNW');
+      return RSVP.resolve();
+    };
+
+    var command = new CommandUnderTest(commandOptions).validateAndRun();
 
     return expect(command).to.be.rejected
       .then(function() {
@@ -95,20 +95,17 @@ describe("ember nw command", function() {
   it("should not keep watching if nw.js fails to run", function() {
     var tasks = [];
 
-    var command = new NWCommand({
-      ui: ui,
-      analytics: analytics,
-      project: project,
-      settings: {},
-      buildWatch: function() {
-        tasks.push('buildWatch');
-        return RSVP.resolve();
-      },
-      runNW: function() {
-        tasks.push('runNW');
-        return RSVP.reject();
-      }
-    }).validateAndRun();
+    commandOptions.buildWatch = function() {
+      tasks.push('buildWatch');
+      return RSVP.resolve();
+    };
+
+    commandOptions.runNW = function() {
+      tasks.push('runNW');
+      return RSVP.reject();
+    };
+
+    var command = new CommandUnderTest(commandOptions).validateAndRun();
 
     return expect(command).to.be.rejected
       .then(function() {
@@ -117,15 +114,12 @@ describe("ember nw command", function() {
   });
 
   it("should spawn a 'nw' process with the right arguments", function() {
-    var command = new NWCommand({
-      ui: ui,
-      analytics: analytics,
-      project: project,
-      settings: {},
-      buildWatch: function() {
-        return RSVP.resolve();
-      }
-    }).validateAndRun();
+    commandOptions.buildWatch = function() {
+      return RSVP.resolve();
+    };
+
+    var command = new CommandUnderTest(commandOptions).validateAndRun();
+    var ui = commandOptions.ui;
 
     return expect(command).to.be.fulfilled
       .then(function() {
@@ -139,15 +133,12 @@ describe("ember nw command", function() {
   });
 
   it("should print a friendly message when the 'nw' command cannot be found", function() {
-    var command = new NWCommand({
-      ui: ui,
-      analytics: analytics,
-      project: project,
-      settings: {},
-      buildWatch: function() {
-        return RSVP.resolve();
-      }
-    }).validateAndRun();
+    commandOptions.buildWatch = function() {
+      return RSVP.resolve();
+    };
+
+    var command = new CommandUnderTest(commandOptions).validateAndRun();
+    var ui = commandOptions.ui;
 
     spawn.sequence.add(function() {
       this.emit('error', { code: 'ENOENT' });
