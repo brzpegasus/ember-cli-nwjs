@@ -45,7 +45,7 @@ The following command line options let you specify a target environment or chang
  * Target environment for the Ember app build
  * Alias: `-e <value>, -dev (--environment=development), -prod (--environment=production)`
 
-**`--output-path`** _(Path)_ (Default: 'dist/')
+**`--output-path`** _(String)_ (Default: 'dist/')
  * Output directory for the Ember app build
  * Aliases: `-o <value>`
 
@@ -77,24 +77,24 @@ You can pass the following command line options:
  * Target environment for the Ember app build
  * Alias: `-e <value>, -dev (--environment=development), -prod (--environment=production)`
 
-**`--output-path`** _(path)_ (Default: 'dist/')
+**`--output-path`** _(String)_ (Default: 'dist/')
  * Output directory for the Ember app build
  * Aliases: `-o <value>`
 
-**`--config-file`** _(String)_ (Default: './config/nw-package.js')
+**`--config-file`** _(String)_ (Default: 'config/nw-package.js')
  * Configuration file for `node-webkit-builder`
  * Aliases: `-f <value>`
 
 ### Configuring node-webkit-builder
 
-`node-webkit-builder` itself comes with a lot of build [options](https://github.com/mllrsohn/node-webkit-builder#options). You can customize any of those settings by supplying a configuration file named `./config/nw-package.js` in your project, or call `ember nw:package` with the `--config-file` option set to the desired file.
+`node-webkit-builder` itself comes with a lot of build [options](https://github.com/mllrsohn/node-webkit-builder#options). You can customize any of those settings by supplying a configuration file named `config/nw-package.js` in your project, or call `ember nw:package` with the `--config-file` option set to the desired file.
 
 #### Configuration File
 
 The configuration file must be a node module that exports a plain object with the names of the options you wish to override as keys:
 
 ```javascript
-// ./config/nw-package.js
+// config/nw-package.js
 
 module.exports = {
   appName: 'my-nw-app',
