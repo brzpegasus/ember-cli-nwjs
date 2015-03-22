@@ -13,8 +13,10 @@ describe("The command to start NW.js", function() {
 
   describe("when the `nw` npm package is installed", function() {
     before(function() {
-      mockery.enable({ useCleanCache: true });
-      mockery.warnOnUnregistered(false);
+      mockery.enable({
+        useCleanCache: true,
+        warnOnUnregistered: false
+      });
     });
 
     after(function() {

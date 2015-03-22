@@ -12,7 +12,8 @@ module.exports = {
 
   includedCommands: function() {
     return {
-      nw: require('./lib/commands/nw')
+      'nw': require('./lib/commands/nw'),
+      'nw:package': require('./lib/commands/nw-package')
     }
   }
 };
