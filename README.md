@@ -10,6 +10,10 @@ An [ember-cli](http://www.ember-cli.com/) addon for developing Ember.js applicat
 * Build, watch, and run the app in NW.js with a convenient command: `ember nw`.
 * Build and package your app for production in one step with the `ember nw:package` command.
 
+**Sample apps built with this addon:**
+
+* [Markdown Editor](https://github.com/brzpegasus/ember-nw-markdown)
+
 ## Installation
 
 From the root of your Ember CLI project:
