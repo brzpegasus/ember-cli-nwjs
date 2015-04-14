@@ -1,5 +1,6 @@
+/* jshint browser: true */
 (function() {
-  if (!window.nwDispatcher) return;
+  if (!window.nwDispatcher) { return; }
 
   // Reload the page when anything in `dist` changes
   var fs = window.requireNode('fs');

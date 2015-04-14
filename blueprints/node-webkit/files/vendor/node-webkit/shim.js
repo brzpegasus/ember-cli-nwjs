@@ -1,5 +1,6 @@
+/* jshint browser: true */
 (function(window) {
-  if (!window.nwDispatcher) return;
+  if (!window.nwDispatcher) { return; }
 
   // Move `global.window` out of the way as it causes some third-party
   // libraries to expose themselves via `global` instead of `window`.
