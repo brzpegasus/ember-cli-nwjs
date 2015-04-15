@@ -19,7 +19,7 @@ An [ember-cli](http://www.ember-cli.com/) addon for developing Ember.js applicat
 From the root of your Ember CLI project:
 
 ```
-ember install:addon ember-cli-node-webkit
+ember install ember-cli-node-webkit
 ```
 
 This will do the following:
