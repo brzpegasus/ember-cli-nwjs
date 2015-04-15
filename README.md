@@ -130,7 +130,7 @@ module.exports = {
 To install the addon from `master`, run the following:
 
 ```
-git clone git@github.com:brzpegasus/ember-cli-node-webkit.git 
+git clone git@github.com:brzpegasus/ember-cli-node-webkit.git
 cd ember-cli-node-webkit
 npm link
 ```
@@ -153,6 +153,10 @@ Then, in your Ember CLI project:
 npm link ember-cli-node-webkit
 ember g node-webkit
 ```
+
+### Development
+
+To pass the addon code through the linters during development, run `ember build --watch`.
 
 ### Running Tests
 
