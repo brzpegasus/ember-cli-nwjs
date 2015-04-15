@@ -17,13 +17,17 @@
     "rsvp": "^3.0.17"
   },
   "devDependencies": {
+    "broccoli-jscs": "0.0.22",
+    "broccoli-jshint": "0.5.5",
+    "broccoli-merge-trees": "0.2.1",
     "chai": "^2.1.1",
     "chai-as-promised": "^4.3.0",
     "ember-cli": "0.2.0-beta.1",
     "glob": "^5.0.3",
     "mocha": "^2.2.1",
+    "mocha-jscs": "^1.0.2",
     "mocha-jshint": "^1.0.0",
-    "mock-spawn": "^0.2.4",
+    "mock-spawn": "0.2.4",
     "mockery": "^1.4.0",
     "sinon": "^1.14.1"
   },
