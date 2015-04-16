@@ -21,11 +21,13 @@ module.exports = {
     var dependencies = this.project.dependencies();
 
     return this.addNwConfig(options)
-      .then(function() {
-        if (!dependencies.nw) {
-          return _this.addPackageToProject('nw');
-        }
-      });
+    .then(function () {
+      if (!dependencies.nw) {
+        return _this.addPackageToProject('nw');
+      }
+    }).then(function () {
+      return _this.addQUnitLogger();
+    });
   },
 
   addNwConfig: function(options) {
@@ -49,6 +51,23 @@ module.exports = {
       if (!options.dryRun) {
         return writeFile(packageJsonPath, JSON.stringify(json, null, '  '));
       }
+    });
+  },
+
+  addQUnitLogger: function() {
+    var testHelperFile = path.resolve(this.project.root, 'tests/test-helper.js');
+    var ui = this.ui;
+
+    return readFile(testHelperFile, { encoding: 'utf8' })
+    .then(function(data) {
+      var code = 'import \'vendor/node-webkit/qunit-logger\';';
+
+      if (data.indexOf(code) < 0) {
+        ui.writeLine(chalk.yellow('modifying tests/test-helper.js to import vendor/node-webkit/qunit-logger'));
+        data = data + '\n// placed by ember-cli-node-webkit \n' + code;
+      }
+
+      return writeFile(testHelperFile, data);
     });
   }
 };
