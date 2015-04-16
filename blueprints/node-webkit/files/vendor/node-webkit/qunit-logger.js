@@ -1,6 +1,4 @@
-/* global define */
-/* global window */
-/* global QUnit */
+/* global define, window, QUnit */
 // dead stupid script to format test output from nw.js to the console
 define('vendor/node-webkit/qunit-logger', function () {
   function log(content) {
@@ -14,6 +12,7 @@ define('vendor/node-webkit/qunit-logger', function () {
   var totalTestCount = 0;
   var testCount = 0;
   var tests = {};
+
   QUnit.begin(function (details) {
     if (details.totalTests >= 1) {
       totalTestCount = details.totalTests;
@@ -32,6 +31,7 @@ define('vendor/node-webkit/qunit-logger', function () {
   QUnit.log(function (details) {
     if (details.result !== true) {
       var actualTestCount = testCount + 1;
+
       log('not ok ' + actualTestCount + ' - ' + details.module + ' - ' + details.name);
       log('#    actual: -');
       log('#      ' + details.actual);
@@ -39,6 +39,7 @@ define('vendor/node-webkit/qunit-logger', function () {
       log('#      ' + details.expected);
       log('#    message: -');
       log('#      ' + details.message);
+
       if (details.source) {
         log('#      ' + details.source);
       }
@@ -50,14 +51,8 @@ define('vendor/node-webkit/qunit-logger', function () {
     }
   });
 
-  QUnit.done(function (details) {
-    var gui = require('nw.gui');
-    if (details.failed === 0) {
-      // quit with no error
-      gui.App.quit();
-    } else {
-      // fail out
-      gui.App.crashRenderer();
-    }
+  QUnit.done(function(details) {
+    log('# done' + (details.failed === 0 ? '' : ' with errors'));
+    require('nw.gui').App.quit();
   });
-})();
+});
