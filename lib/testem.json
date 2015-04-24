@@ -9,8 +9,8 @@
   ],
   "launchers": {
     "nw": {
-        "command": "node nw-runner.js",
-        "protocol": "tap"
+      "command": "node nw-runner.js",
+      "protocol": "tap"
     }
   }
 }
