@@ -16,7 +16,7 @@ define('vendor/node-webkit/qunit-logger', function () {
   QUnit.begin(function (details) {
     if (details.totalTests >= 1) {
       totalTestCount = details.totalTests;
-      log('1...' + details.totalTests);
+      log('1..' + details.totalTests);
     }
   });
 
@@ -31,23 +31,8 @@ define('vendor/node-webkit/qunit-logger', function () {
   QUnit.log(function (details) {
     if (details.result !== true) {
       var actualTestCount = testCount + 1;
-
+      log('# ' + JSON.stringify(details));
       log('not ok ' + actualTestCount + ' - ' + details.module + ' - ' + details.name);
-      log('#    actual: -');
-      log('#      ' + details.actual);
-      log('#    expected: -');
-      log('#      ' + details.expected);
-      log('#    message: -');
-      log('#      ' + details.message);
-
-      if (details.source) {
-        log('#      ' + details.source);
-      }
-
-      log('#    Log:');
-      if (details.log) {
-        log('#      ' + details.log);
-      }
     }
   });
 

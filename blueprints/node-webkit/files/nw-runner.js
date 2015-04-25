@@ -17,7 +17,8 @@ function runNw(nwPath) {
   nw.stderr.on('data', function(data) {
     if (data.indexOf('[qunit-logger]') > -1) {
       data = data.replace(/.*\[qunit-logger] (.*)"", source:.*/g, '$1');
-      data = data.replace(/\\n/g, '\n#      ');
+      data = data.replace(/\\"/g, '"');
+      data = data.replace(/\\\\n/g, '\\n');
       process.stdout.write(data);
 
       if (data === '# done with errors') {
