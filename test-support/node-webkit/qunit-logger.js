@@ -1,10 +1,11 @@
-/* global define, window, QUnit */
 // dead stupid script to format test output from nw.js to the console
-define('vendor/node-webkit/qunit-logger', function () {
-  function log(content) {
-    console.log('[qunit-logger] ' + content);
-  }
+import QUnit from 'qunit';
 
+function log(content) {
+  console.log('[qunit-logger] ' + content);
+}
+
+export function setQUnitLogger() {
   if (!window.nwDispatcher) {
     return;
   }
@@ -13,14 +14,14 @@ define('vendor/node-webkit/qunit-logger', function () {
   var testCount = 0;
   var tests = {};
 
-  QUnit.begin(function (details) {
+  QUnit.begin(function(details) {
     if (details.totalTests >= 1) {
       totalTestCount = details.totalTests;
       log('1..' + details.totalTests);
     }
   });
 
-  QUnit.testDone(function (details) {
+  QUnit.testDone(function(details) {
     testCount++;
     if (details.failed === 0 && !tests[details.name]) {
       tests[details.name] = details.name;
@@ -28,7 +29,7 @@ define('vendor/node-webkit/qunit-logger', function () {
     }
   });
 
-  QUnit.log(function (details) {
+  QUnit.log(function(details) {
     if (details.result !== true) {
       var actualTestCount = testCount + 1;
       log('# ' + JSON.stringify(details));
@@ -40,4 +41,4 @@ define('vendor/node-webkit/qunit-logger', function () {
     log('# done' + (details.failed === 0 ? '' : ' with errors'));
     require('nw.gui').App.quit();
   });
-});
+}

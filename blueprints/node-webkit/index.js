@@ -55,19 +55,26 @@ module.exports = {
   },
 
   addQUnitLogger: function() {
-    var testHelperFile = path.resolve(this.project.root, 'tests/test-helper.js');
     var ui = this.ui;
+    var testHelperFile = path.resolve(this.project.root, 'tests/test-helper.js');
 
     return readFile(testHelperFile, { encoding: 'utf8' })
-    .then(function(data) {
-      var code = 'import \'vendor/node-webkit/qunit-logger\';';
+      .then(function(data) {
+        if (data.indexOf('node-webkit/qunit-logger') < 0) {
+          ui.writeLine('  ' + chalk.yellow('overwrite') + ' tests/test-helper.js');
 
-      if (data.indexOf(code) < 0) {
-        ui.writeLine(chalk.yellow('modifying tests/test-helper.js to import vendor/node-webkit/qunit-logger'));
-        data = data + '\n// placed by ember-cli-node-webkit \n' + code;
-      }
+          var code = [
+            "",
+            "// Added by ember-cli-node-webkit",
+            "import { setQUnitLogger } from './node-webkit/qunit-logger';",
+            "",
+            "setQUnitLogger();"
+          ];
 
-      return writeFile(testHelperFile, data);
-    });
+          data = data + code.join('\n');
+        }
+
+        return writeFile(testHelperFile, data);
+      });
   }
 };
