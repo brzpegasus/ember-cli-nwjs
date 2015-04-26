@@ -7,7 +7,6 @@ module.exports = {
     this._super.included(app);
 
     app.import('vendor/node-webkit/shim.js', { prepend: true });
-    app.import('vendor/node-webkit/qunit-logger.js');
     app.import({ development: 'vendor/node-webkit/reload.js' });
   },
 
