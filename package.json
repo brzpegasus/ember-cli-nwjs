@@ -14,7 +14,8 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "node-webkit-builder": "^1.0.11",
-    "rsvp": "^3.0.17"
+    "rsvp": "^3.0.17",
+    "testem": "0.8.2"
   },
   "devDependencies": {
     "broccoli-jscs": "0.0.22",
