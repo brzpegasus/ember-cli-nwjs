@@ -14,6 +14,8 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "node-webkit-builder": "^1.0.11",
+    "optimist": "0.6.1",
+    "quick-temp": "0.1.2",
     "rsvp": "^3.0.17",
     "testem": "0.8.2"
   },
