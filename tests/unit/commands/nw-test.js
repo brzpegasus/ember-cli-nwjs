@@ -44,7 +44,11 @@ describe("ember nw command", function() {
   });
 
   afterEach(function() {
-    process.env.NW_PATH = _envNW;
+    if (_envNW) {
+      process.env.NW_PATH = _envNW;
+    } else {
+      delete process.env.NW_PATH;
+    }
 
     mockery.deregisterAll();
     mockery.resetCache();
