@@ -45,7 +45,6 @@ module.exports = {
       var json = JSON.parse(data);
       json.main = 'dist/index.html';
       json.window = { width: 960, height: 600 };
-
       ui.writeLine('  ' + chalk.yellow('overwrite') + ' package.json');
 
       if (!options.dryRun) {
