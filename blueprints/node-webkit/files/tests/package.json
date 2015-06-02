@@ -2,6 +2,6 @@
   "name": "ember-nw-test",
   "main": "index.html",
   "window": {
-    "show": false
+    "show": true
   }
 }
