@@ -15,6 +15,7 @@
     "broccoli-funnel": "^0.2.3",
     "broccoli-string-replace": "0.0.2",
     "chalk": "^1.0.0",
+    "lodash": "^3.9.3",
     "node-webkit-builder": "^1.0.11",
     "optimist": "0.6.1",
     "quick-temp": "0.1.2",
