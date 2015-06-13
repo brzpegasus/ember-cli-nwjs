@@ -1,0 +1,10 @@
+tests/
+tmp/
+dist/
+
+.editorconfig
+.ember-cli
+.travis.yml
+.npmignore
+**/.gitkeep
+Brocfile.js
