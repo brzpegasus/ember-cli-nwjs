@@ -1,7 +1,4 @@
 {
   "name": "ember-nw-test",
-  "main": "index.html",
-  "window": {
-    "show": true
-  }
+  "main": "index.html"
 }

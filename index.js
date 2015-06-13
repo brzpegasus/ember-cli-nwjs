@@ -51,6 +51,24 @@ module.exports = {
         destDir: '/tests'
       });
 
+      var testPageOptions = process.env.NW_TEST_PAGE_OPTIONS;
+
+      if (testPageOptions) {
+        testPkg = replace(testPkg, {
+          files: ['tests/package.json'],
+          patterns: [
+            {
+              match: /"main":\s*"(index.html\?[^\"]+)"/,
+              replacement: '"main": "$1&' + testPageOptions + '"'
+            },
+            {
+              match: /"main":\s*"index.html"/,
+              replacement: '"main": "index.html?' + testPageOptions + '"'
+            }
+          ]
+        });
+      }
+
       return mergeTrees([tree, index, testPkg], { overwrite: true });
     }
 
