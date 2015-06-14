@@ -29,6 +29,7 @@
     "chai": "^2.1.1",
     "chai-as-promised": "^4.3.0",
     "ember-cli": "0.2.7",
+    "ember-cli-release": "0.2.3",
     "glob": "^5.0.3",
     "mocha": "^2.2.5",
     "mocha-jscs": "^1.1.0",
