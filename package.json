@@ -13,11 +13,11 @@
   "license": "MIT",
   "dependencies": {
     "broccoli-funnel": "^0.2.3",
+    "broccoli-merge-trees": "0.2.1",
     "broccoli-string-replace": "0.0.2",
     "chalk": "^1.0.0",
     "lodash": "^3.9.3",
     "node-webkit-builder": "^1.0.12",
-    "optimist": "0.6.1",
     "quick-temp": "0.1.2",
     "rsvp": "^3.0.18",
     "testem": "0.8.3"
@@ -25,7 +25,6 @@
   "devDependencies": {
     "broccoli-jscs": "0.0.22",
     "broccoli-jshint": "0.5.6",
-    "broccoli-merge-trees": "0.2.1",
     "chai": "^2.1.1",
     "chai-as-promised": "^4.3.0",
     "ember-cli": "0.2.7",
