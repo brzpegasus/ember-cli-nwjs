@@ -63,6 +63,52 @@ To use a different NW.js:
 * Set an environment variable named `NW_PATH` that points to the desired binary. For instance, you may have downloaded the executable from the [NW.js website](https://github.com/nwjs/nw.js#downloads) and wish to use that instead.
 * On Windows, if the location of your `nw.exe` has been added to your `PATH`, then the `NW_PATH` environment variable does not need to be set.
 
+## Testing
+
+### Command
+
+```
+ember nw:test
+```
+
+Use this command to run tests in NW.js. `ember nw:test` will put Testem in CI mode, so the tests will execute once, then exit.
+
+```
+ember nw:test --server
+```
+
+Adding the `--server` flag will put Testem in Dev mode, so NW.js will stay running, and test results can be viewed both in the NW.js window and in Testem's terminal-based UI.
+
+### Options
+
+You can pass the following command line options:
+
+**`--environment`** _(String)_ (Default: 'test')
+ * Target environment for the Ember app build
+ * Alias: `-e <value>, -dev (--environment=development), -prod (--environment=production)`
+
+**`--server`** _(String)_ (Default: false)
+ * Run tests in interactive mode
+
+**`--protocol`** _(String)_ (Default: 'http')
+ * The protocol to use when running with `--server`
+
+**`--host`** _(String)_ (Default: 'localhost')
+ * The host to use when running with `--server`
+ * Alias: `-H`
+
+**`--port`** _(Number)_ (Default: 7357)
+ * The port to use when running with `--server`
+ * Alias: `-p`
+
+**`--module`** _(String)_
+ * The name of a test module to run (available with `--server`)
+ * Alias: `-m`
+
+**`--filter`** _(String)_
+ * A string to filter tests to run (available with `--server`)
+ * Alias: `-f`
+
 ## Packaging
 
 ### Command
