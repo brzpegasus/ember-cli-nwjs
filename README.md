@@ -14,6 +14,14 @@ An [ember-cli](http://www.ember-cli.com/) addon for developing Ember.js applicat
 
 * [Markdown Editor](https://github.com/brzpegasus/ember-nw-markdown)
 
+**Table of Contents:**
+
+* [Installation](#installation)
+* [Build, Watch, and Run NW.js](#build-watch-and-run-nwjs)
+* [Testing](#testing)
+* [Packaging](#packaging)
+* [Contributing](#contributing)
+
 ## Installation
 
 From the root of your Ember CLI project:
@@ -169,7 +177,7 @@ module.exports = {
 * **cacheDir**
   * Value: `build/cache`
 
-## Contribution
+## Contributing
 
 ### Working with `master`
 
