@@ -18,6 +18,7 @@
     "chalk": "^1.0.0",
     "lodash": "^3.9.3",
     "node-webkit-builder": "^1.0.12",
+    "optimist": "0.6.1",
     "quick-temp": "0.1.2",
     "rsvp": "^3.0.18",
     "testem": "0.8.3"
