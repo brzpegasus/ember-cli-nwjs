@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-node-webkit",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "An addon for building desktop apps with Ember and NW.js",
   "scripts": {
     "test": "node tests/runner.js"
