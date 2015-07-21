@@ -35,7 +35,7 @@ module.exports = {
     var mergeTrees = require('broccoli-merge-trees');
     var replace = require('broccoli-string-replace');
 
-    if (type === 'all' && process.env.EMBER_ENV === 'test') {
+    if (type === 'all' && process.env.EMBER_ENV === 'test' && process.env.NW_TEST) {
       // Update the base URL in `tests/index.html`
       var index = replace(tree, {
         files: ['tests/index.html'],
@@ -76,7 +76,7 @@ module.exports = {
   },
 
   contentFor: function(type) {
-    if (type === 'test-body' && process.env.EMBER_ENV === 'test') {
+    if (type === 'test-body' && process.env.EMBER_ENV === 'test' && process.env.NW_TEST) {
       var testemServer = process.env.NW_TESTEM_SERVER_URL;
       if (testemServer) {
         return '<script src="' + testemServer + '/socket.io/socket.io.js"></script>';
