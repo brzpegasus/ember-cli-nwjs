@@ -1,6 +1,12 @@
 'use strict';
 
+var fs = require('fs');
 var path = require('path');
+
+function injectScript(scriptName) {
+  var filePath = path.join(__dirname, 'lib', 'resources', scriptName);
+  return '<script>\n' + fs.readFileSync(filePath, { encoding: 'utf8' }) + '\n</script>';
+}
 
 module.exports = {
   name: 'ember-node-webkit',
@@ -8,9 +14,9 @@ module.exports = {
   included: function(app) {
     this._super.included(app);
 
-    app.import('vendor/node-webkit/shim.js', { prepend: true });
-    app.import({ development: 'vendor/node-webkit/reload.js' });
+    if (!process.env.EMBER_CLI_NW) { return; }
 
+    app.import({ development: 'vendor/node-webkit/reload.js' });
     if (process.env.NW_TESTS_DEV) {
       app.import({ test: 'vendor/node-webkit/browser-qunit-adapter.js' });
     } else {
@@ -31,11 +37,15 @@ module.exports = {
   },
 
   postprocessTree: function(type, tree) {
-    var funnel = require('broccoli-funnel');
-    var mergeTrees = require('broccoli-merge-trees');
-    var replace = require('broccoli-string-replace');
+    if (!process.env.EMBER_CLI_NW) {
+      return tree;
+    }
 
-    if (type === 'all' && process.env.EMBER_ENV === 'test' && process.env.NW_TEST) {
+    if (type === 'all' && process.env.EMBER_ENV === 'test') {
+      var funnel = require('broccoli-funnel');
+      var mergeTrees = require('broccoli-merge-trees');
+      var replace = require('broccoli-string-replace');
+
       // Update the base URL in `tests/index.html`
       var index = replace(tree, {
         files: ['tests/index.html'],
@@ -56,16 +66,13 @@ module.exports = {
       if (testPageOptions) {
         testPkg = replace(testPkg, {
           files: ['tests/package.json'],
-          patterns: [
-            {
-              match: /"main":\s*"(index.html\?[^\"]+)"/,
-              replacement: '"main": "$1&' + testPageOptions + '"'
-            },
-            {
-              match: /"main":\s*"index.html"/,
-              replacement: '"main": "index.html?' + testPageOptions + '"'
-            }
-          ]
+          patterns: [{
+            match: /"main":\s*"(index.html\?[^\"]+)"/,
+            replacement: '"main": "$1&' + testPageOptions + '"'
+          }, {
+            match: /"main":\s*"index.html"/,
+            replacement: '"main": "index.html?' + testPageOptions + '"'
+          }]
         });
       }
 
@@ -76,7 +83,17 @@ module.exports = {
   },
 
   contentFor: function(type) {
-    if (type === 'test-body' && process.env.EMBER_ENV === 'test' && process.env.NW_TEST) {
+    if (!process.env.EMBER_CLI_NW) { return; }
+
+    if (type === 'head') {
+      return injectScript('shim-head.js');
+    }
+
+    if (type === 'body-footer') {
+      return injectScript('shim-footer.js');
+    }
+
+    if (type === 'test-body' && process.env.EMBER_ENV === 'test') {
       var testemServer = process.env.NW_TESTEM_SERVER_URL;
       if (testemServer) {
         return '<script src="' + testemServer + '/socket.io/socket.io.js"></script>';
