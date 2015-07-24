@@ -9,18 +9,18 @@ function injectScript(scriptName) {
 }
 
 module.exports = {
-  name: 'ember-node-webkit',
+  name: 'ember-cli-nwjs',
 
   included: function(app) {
     this._super.included(app);
 
     if (!process.env.EMBER_CLI_NW) { return; }
 
-    app.import({ development: 'vendor/node-webkit/reload.js' });
+    app.import({ development: 'vendor/nwjs/reload.js' });
     if (process.env.NW_TESTS_DEV) {
-      app.import({ test: 'vendor/node-webkit/browser-qunit-adapter.js' });
+      app.import({ test: 'vendor/nwjs/browser-qunit-adapter.js' });
     } else {
-      app.import({ test: 'vendor/node-webkit/tap-qunit-adapter.js' });
+      app.import({ test: 'vendor/nwjs/tap-qunit-adapter.js' });
     }
   },
 

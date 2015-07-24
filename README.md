@@ -1,8 +1,8 @@
-# ember-cli-node-webkit
+# ember-cli-nwjs
 
-[![npm version](https://badge.fury.io/js/ember-cli-node-webkit.svg)](http://badge.fury.io/js/ember-cli-node-webkit)
-[![Dependency Status](https://david-dm.org/brzpegasus/ember-cli-node-webkit.svg)](https://david-dm.org/brzpegasus/ember-cli-node-webkit)
-[![Build Status](https://travis-ci.org/brzpegasus/ember-cli-node-webkit.svg)](https://travis-ci.org/brzpegasus/ember-cli-node-webkit)
+[![npm version](https://badge.fury.io/js/ember-cli-nwjs.svg)](http://badge.fury.io/js/ember-cli-nwjs)
+[![Dependency Status](https://david-dm.org/brzpegasus/ember-cli-nwjs.svg)](https://david-dm.org/brzpegasus/ember-cli-nwjs)
+[![Build Status](https://travis-ci.org/brzpegasus/ember-cli-nwjs.svg)](https://travis-ci.org/brzpegasus/ember-cli-nwjs)
 
 An [ember-cli](http://www.ember-cli.com/) addon for developing Ember.js applications with [NW.js](http://nwjs.io/) (formerly node-webkit).
 
@@ -27,14 +27,14 @@ An [ember-cli](http://www.ember-cli.com/) addon for developing Ember.js applicat
 From the root of your Ember CLI project:
 
 ```
-ember install ember-cli-node-webkit
+ember install ember-cli-nwjs
 ```
 
 This will do the following:
 
-* Install the addon NPM package (`npm install --save-dev ember-cli-node-webkit`)
-* Run the addon blueprint (`ember generate node-webkit`)
-  * Add the blueprint [files](https://github.com/brzpegasus/ember-cli-node-webkit/tree/master/blueprints/node-webkit/files) to your project
+* Install the addon NPM package (`npm install --save-dev ember-cli-nwjs`)
+* Run the addon blueprint (`ember generate ember-cli-nwjs`)
+  * Add the blueprint [files](https://github.com/brzpegasus/ember-cli-nwjs/tree/master/blueprints/nwjs/files) to your project
   * Install the [`nw`](https://www.npmjs.com/package/nw) NPM package locally
 
 ## Build, Watch, and Run NW.js
@@ -125,7 +125,7 @@ You can pass the following command line options:
 ember nw:package
 ```
 
-This command builds your Ember app, assembles all the assets necessary for NW.js, then generates the final executable using [`node-webkit-builder`](https://github.com/mllrsohn/node-webkit-builder).
+This command builds your Ember app, assembles all the assets necessary for NW.js, then generates the final executable using [`nw-builder`](https://github.com/mllrsohn/nw-builder).
 
 ### Options
 
@@ -140,12 +140,12 @@ You can pass the following command line options:
  * Aliases: `-o <value>`
 
 **`--config-file`** _(String)_ (Default: 'config/nw-package.js')
- * Configuration file for `node-webkit-builder`
+ * Configuration file for `nw-builder`
  * Aliases: `-f <value>`
 
-### Configuring node-webkit-builder
+### Configuring nw-builder
 
-`node-webkit-builder` itself comes with a lot of build [options](https://github.com/mllrsohn/node-webkit-builder#options). You can customize any of those settings by supplying a configuration file named `config/nw-package.js` in your project, or call `ember nw:package` with the `--config-file` option set to the desired file.
+`nw-builder` itself comes with a lot of build [options](https://github.com/mllrsohn/nw-builder#options). You can customize any of those settings by supplying a configuration file named `config/nw-package.js` in your project, or call `ember nw:package` with the `--config-file` option set to the desired file.
 
 #### Configuration File
 
@@ -165,7 +165,7 @@ module.exports = {
 
 #### Default Settings
 
-`ember-cli-node-webkit` sets the following options by default:
+`ember-cli-nwjs` sets the following options by default:
 
 * **files**
   * Value: `['package.json', 'dist/**', 'node_modules/<name>/**']`
@@ -184,28 +184,28 @@ module.exports = {
 To install the addon from `master`, run the following:
 
 ```
-git clone git@github.com:brzpegasus/ember-cli-node-webkit.git
-cd ember-cli-node-webkit
+git clone git@github.com:brzpegasus/ember-cli-nwjs.git
+cd ember-cli-nwjs
 npm link
 ```
 
 Then, in your Ember CLI project:
 
-* Add `ember-cli-node-webkit` to your `package.json`'s dev dependencies so that Ember CLI can discover and register the addon:
+* Add `ember-cli-nwjs` to your `package.json`'s dev dependencies so that Ember CLI can discover and register the addon:
 
 ```json
 {
   "devDependencies": {
-    "ember-cli-node-webkit": "*"
+    "ember-cli-nwjs": "*"
   }
 }
 ```
 
-* Link to your local `ember-cli-node-webkit` and go through the addon install steps:
+* Link to your local `ember-cli-nwjs` and go through the addon install steps:
 
 ```
-npm link ember-cli-node-webkit
-ember g node-webkit
+npm link ember-cli-nwjs
+ember g ember-cli-nwjs
 ```
 
 ### Development
@@ -217,7 +217,7 @@ To pass the addon code through the linters during development, run `ember build 
 To run the addon's test suite:
 
 ```
-cd ember-cli-node-webkit
+cd ember-cli-nwjs
 npm install
 npm test
 ```

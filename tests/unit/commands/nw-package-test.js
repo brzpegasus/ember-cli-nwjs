@@ -8,7 +8,7 @@ var Command       = require('ember-cli/lib/models/command');
 var Task          = require('ember-cli/lib/models/task');
 var MockUI        = require('ember-cli/tests/helpers/mock-ui');
 var MockAnalytics = require('ember-cli/tests/helpers/mock-analytics');
-var MockNWBuilder = require('../../helpers/mocks/node-webkit-builder');
+var MockNWBuilder = require('../../helpers/mocks/nw-builder');
 var MockProject   = require('../../helpers/mocks/project');
 var expect        = require('../../helpers/expect');
 
@@ -21,7 +21,7 @@ describe("ember nw:package command", function() {
       warnOnUnregistered: false
     });
 
-    mockery.registerMock('node-webkit-builder', MockNWBuilder);
+    mockery.registerMock('nw-builder', MockNWBuilder);
     mockery.registerMock('../helpers/detect-platform', function() {
       return 'osx64';
     });
