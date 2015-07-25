@@ -1,11 +1,11 @@
 {
-  "name": "ember-cli-node-webkit",
+  "name": "ember-cli-nwjs",
   "version": "0.3.5",
   "description": "An addon for building desktop apps with Ember and NW.js",
   "scripts": {
     "test": "node tests/runner.js"
   },
-  "repository": "https://github.com/brzpegasus/ember-cli-node-webkit",
+  "repository": "https://github.com/brzpegasus/ember-cli-nwjs",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -17,7 +17,7 @@
     "broccoli-string-replace": "0.0.2",
     "chalk": "^1.0.0",
     "lodash": "^3.9.3",
-    "node-webkit-builder": "^1.0.12",
+    "nw-builder": "^2.0.1",
     "optimist": "0.6.1",
     "quick-temp": "0.1.2",
     "rsvp": "^3.0.18",
@@ -41,9 +41,10 @@
   "keywords": [
     "ember-addon",
     "node-webkit",
-    "nw"
+    "nw",
+    "nwjs"
   ],
   "ember-addon": {
-    "defaultBlueprint": "node-webkit"
+    "defaultBlueprint": "ember-cli-nwjs"
   }
 }
