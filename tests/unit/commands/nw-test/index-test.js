@@ -106,7 +106,7 @@ describe('ember nw:test command', function() {
 
         var devLauncher = testOptions.launchers[devLauncherName] || {};
         expect(devLauncher.protocol).to.equal('browser');
-        expect(devLauncher.command).to.equal('"nw" "' + path.join(outputPath, 'tests') + '"');
+        expect(devLauncher.command).to.equal('node "' + runnerPath + '" --nw-path="nw" --tests-path="' + path.join(outputPath, 'tests') + '"');
 
         testem.startCI.restore();
       });
