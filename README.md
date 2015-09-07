@@ -34,7 +34,7 @@ This will do the following:
 
 * Install the addon NPM package (`npm install --save-dev ember-cli-nwjs`)
 * Run the addon blueprint (`ember generate ember-cli-nwjs`)
-  * Add the blueprint [files](https://github.com/brzpegasus/ember-cli-nwjs/tree/master/blueprints/nwjs/files) to your project
+  * Add the blueprint [files](https://github.com/brzpegasus/ember-cli-nwjs/tree/master/blueprints/ember-cli-nwjs/files) to your project
   * Install the [`nw`](https://www.npmjs.com/package/nw) NPM package locally
 
 ## Build, Watch, and Run NW.js
