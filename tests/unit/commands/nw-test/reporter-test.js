@@ -71,7 +71,7 @@ describe('CustomTapReporter', function() {
       process.stdout.write.restore();
 
       expect(logs).to.deep.equal([
-        'not ok 2 NW.js - Unit - Reporter - failed test\n',
+        'not ok 2 NW.js - Unit - Reporter - failed test\n' +
         '    ---\n' +
         '        actual: >\n' +
         '            false\n' +
