@@ -1,3 +1,5 @@
 var mochaJSHint = require('mocha-jshint');
 
-mochaJSHint(['lib', 'blueprints']);
+mochaJSHint({
+  paths: ['lib', 'blueprints']
+});

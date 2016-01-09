@@ -16,3 +16,7 @@ MockProject.prototype.isEmberCLIProject = function() {
 };
 
 MockProject.prototype.initializeAddons = function() {};
+
+MockProject.prototype.hasDependencies = function() {
+  return true;
+};
