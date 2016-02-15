@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-nwjs",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "An addon for building desktop apps with Ember and NW.js",
   "scripts": {
     "test": "node tests/runner.js"
