@@ -1,6 +1,6 @@
 (function(window) {
   // Exit immediately if we're not running in NW.js
-  if (typeof window.nwDispatcher === 'undefined') {
+  if (typeof window.nwDispatcher === 'undefined' && typeof window.nw === 'undefined') {
     return;
   }
 
