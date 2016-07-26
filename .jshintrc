@@ -21,6 +21,7 @@
   "onevar": false,
   "plusplus": false,
   "regexp": false,
+  "expr": true,
   "undef": true,
   "sub": true,
   "strict": false,
