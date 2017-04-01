@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-nwjs",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "An addon for building desktop apps with Ember and NW.js",
   "scripts": {
     "test": "node tests/runner.js"
@@ -17,7 +17,7 @@
     "broccoli-string-replace": "0.1.1",
     "chalk": "^1.1.1",
     "lodash": "^4.0.0",
-    "nw-builder": "^2.2.0",
+    "nw-builder": "^3.2.0",
     "optimist": "0.6.1",
     "quick-temp": "0.1.5",
     "rsvp": "^3.1.0",
